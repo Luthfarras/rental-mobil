@@ -30,6 +30,7 @@ class PetugasController extends Controller
   {
       $validator = Validator::make($request->all(), [
           'nama_petugas' => 'required|string|max:255',
+          'alamat' => 'required',
           'telp' => 'required',
           'username' => 'required|string|max:255|',
           'password' => 'required|string|min:6|confirmed',
@@ -42,6 +43,7 @@ class PetugasController extends Controller
 
       $user = Petugas::create([
           'nama_petugas' => $request->get('nama_petugas'),
+          'alamat' => $request->get('alamat'),
           'telp' => $request->get('telp'),
           'username' => $request->get('username'),
           'password' => Hash::make($request->get('password')),

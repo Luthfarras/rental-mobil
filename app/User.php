@@ -11,7 +11,7 @@ class User extends Authenticatable implements JWTSubject
 {
 
     use Notifiable;
-    protected $table = 'petugas';
+    protected $table = 'admin';
 
     /**
      * The attributes that are mass assignable.

@@ -11,7 +11,7 @@ class Petugas extends Authenticatable implements JWTSubject
 {
 
     use Notifiable;
-    protected $table = 'petugas';
+    protected $table = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +19,7 @@ class Petugas extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'nama_petugas', 'telp', 'username', 'password', 'level'
+      'nama_petugas', 'alamat', 'telp', 'username', 'password', 'level'
     ];
 
     // public function tiket(){
