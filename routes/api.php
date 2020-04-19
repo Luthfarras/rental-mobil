@@ -32,12 +32,12 @@ Route::put('/up_jn/{id}','JenisController@update')->middleware('jwt.verify');
 Route::get('/get_jn','JenisController@tampil')->middleware('jwt.verify');
 Route::delete('/del_jn/{id}','JenisController@destroy')->middleware('jwt.verify');
 
-//pelanggan
-// Route::get('pelanggan','pelangganController@index')->middleware('jwt.verify');
-Route::post('/add_pl','PelangganController@store')->middleware('jwt.verify');
-Route::put('/up_pl/{id}','PelangganController@update')->middleware('jwt.verify');
-Route::get('/get_pl','PelangganController@tampil')->middleware('jwt.verify');
-Route::delete('/del_pl/{id}','PelangganController@destroy')->middleware('jwt.verify');
+//Penyewa
+// Route::get('Penyewa','PenyewaController@index')->middleware('jwt.verify');
+Route::post('/add_py','PenyewaController@store')->middleware('jwt.verify');
+Route::put('/up_py/{id}','PenyewaController@update')->middleware('jwt.verify');
+Route::get('/get_py','PenyewaController@tampil')->middleware('jwt.verify');
+Route::delete('/del_py/{id}','PenyewaController@destroy')->middleware('jwt.verify');
 
 //detail
 // Route::get('ftayang','FTController@index')->middleware('jwt.verify');

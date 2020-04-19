@@ -3,30 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pelanggan;
+use App\Penyewa;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 
-class PelangganController extends Controller
+class PenyewaController extends Controller
 {
   public function store(Request $req){
     if(Auth::user()->level=="admin"){
     $validator = Validator::make($req->all(),
     [
-      'nama' => 'required',
+      'nama_penyewa' => 'required',
       'alamat' => 'required',
-      'telp' => 'required'
+      'telp' => 'required',
+      'foto_ktp' => 'required'
     ]);
     if($validator->fails()){
       return Response()->json($validator->errors());
     }
-    $simpan = Pelanggan::create([
-      'nama' => $req->nama,
+    $simpan = Penyewa::create([
+      'nama_penyewa' => $req->nama_penyewa,
       'alamat' => $req->alamat,
-      'telp' => $req->telp
+      'telp' => $req->telp,
+      'foto_ktp' => $req->foto_ktp
     ]);
     $status=1;
     $message="Tambah Data Berhasil";
@@ -43,17 +45,19 @@ class PelangganController extends Controller
   public function update($id, Request $req){
     $validator = Validator::make($req->all(),
     [
-      'nama' => 'required',
+      'nama_penyewa' => 'required',
       'alamat' => 'required',
-      'telp' => 'required'
+      'telp' => 'required',
+      'foto_ktp' => 'required'
     ]);
     if($validator->fails()){
       return Response()->json($validator->errors());
     }
-    $ubah = Pelanggan::where('id', $id)->update([
-      'nama' => $req->nama,
+    $ubah = Penyewa::where('id', $id)->update([
+      'nama_penyewa' => $req->nama_penyewa,
       'alamat' => $req->alamat,
-      'telp' => $req->telp
+      'telp' => $req->telp,
+      'foto_ktp' => $req->foto_ktp
     ]);
     $status=1;
     $message="Ubah Data Berhasil";
@@ -66,14 +70,15 @@ class PelangganController extends Controller
 
   public function tampil(){
     if(Auth::user()->level=="admin"){
-    $pelanggan=Pelanggan::get();
-    $count=$pelanggan->count();
+    $penyewa=Penyewa::get();
+    $count=$penyewa->count();
     $arr_data=array();
-    foreach ($pelanggan as $p){
+    foreach ($penyewa as $p){
       $arr_data[]=array(
-        'nama' => $p->nama,
+        'nama_penyewa' => $p->nama_penyewa,
         'alamat' => $p->alamat,
-        'telp' => $p->telp
+        'telp' => $p->telp,
+        'foto_ktp' => $p->foto_ktp
       );
     }
     $status=1;
@@ -84,7 +89,7 @@ class PelangganController extends Controller
   }
 
   public function destroy($id){
-    $hapus = Pelanggan::where('id', $id)->delete();
+    $hapus = Penyewa::where('id', $id)->delete();
     $status=1;
     $message="Hapus Data berhasil";
     if($hapus){

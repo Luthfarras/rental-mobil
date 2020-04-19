@@ -25,18 +25,16 @@ class JenisController extends Controller
     if(Auth::user()->level=="admin"){
     $validator = Validator::make($req->all(),
     [
-      'nama_jenis' => 'required',
-      'harga_perkilo' => 'required'
+      'jenis_mobil' => 'required'
     ]);
     if($validator->fails()){
       return Response()->json($validator->errors());
     }
     $simpan = Jenis::create([
-      'nama_jenis' => $req->nama_jenis,
-      'harga_perkilo' => $req->harga_perkilo
+      'jenis_mobil' => $req->jenis_mobil
     ]);
     $status=1;
-    $message="Berhasil Menambah Detail";
+    $message="Berhasil Menambah Data";
     if($simpan){
       return Response()->json(compact('status','message'));
     } else {
@@ -50,15 +48,13 @@ class JenisController extends Controller
   public function update($id, Request $req){
     $validator = Validator::make($req->all(),
     [
-      'nama_jenis' => 'required',
-      'harga_perkilo' => 'required'
+      'jenis_mobil' => 'required'
     ]);
     if($validator->fails()){
       return Response()->json($validator->errors());
     }
     $ubah = Jenis::where('id', $id)->update([
-      'nama_jenis' => $req->nama_jenis,
-      'harga_perkilo' => $req->harga_perkilo
+      'jenis_mobil' => $req->jenis_mobil
     ]);
     $status=1;
     $message="Ubah Data Berhasil";
@@ -76,8 +72,7 @@ class JenisController extends Controller
     $arr_data=array();
     foreach ($jenis as $j){
       $arr_data[]=array(
-        'nama_jenis' => $j->nama_jenis,
-        'harga_perkilo' => $j->harga_perkilo
+        'jenis_mobil' => $j->jenis_mobil
       );
     }
     $status=1;
