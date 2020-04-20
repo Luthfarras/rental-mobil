@@ -72,6 +72,7 @@ class JenisController extends Controller
     $arr_data=array();
     foreach ($jenis as $j){
       $arr_data[]=array(
+        'id' => $j->id,
         'jenis_mobil' => $j->jenis_mobil
       );
     }

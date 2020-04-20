@@ -75,6 +75,7 @@ class PenyewaController extends Controller
     $arr_data=array();
     foreach ($penyewa as $p){
       $arr_data[]=array(
+        'id' => $p->id,
         'nama_penyewa' => $p->nama_penyewa,
         'alamat' => $p->alamat,
         'telp' => $p->telp,
